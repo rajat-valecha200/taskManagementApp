@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "79ae573f-dfc2-4f03-8734-f4334d12c14a",
+		"name": "TaskManagementApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35194811"
+	},
+	"item": [
+		{
+			"name": "RegisterNewUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"rajat@test.com\",\r\n  \"password\": \"123456\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/api/register",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"rajat@test.com\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/api/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddNewTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:5000/api/tasks",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FetchTask",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWJiNDBjYWI4ZDNiYmFhNGI0ZTQ4OCIsImlhdCI6MTc0NjY0NjExMn0.DzwGRGZtMd1MBGKKOPAOiKhJVkBG3jv4Rgd5boWMJWE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:5000/api/tasks",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTaskStatu",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWJiNDBjYWI4ZDNiYmFhNGI0ZTQ4OCIsImlhdCI6MTc0NjY0NjExMn0.DzwGRGZtMd1MBGKKOPAOiKhJVkBG3jv4Rgd5boWMJWE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:5000/api/tasks/681bb4f7ab8d3bbaa4b4e48c",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks",
+						"681bb4f7ab8d3bbaa4b4e48c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTask",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWJiNDBjYWI4ZDNiYmFhNGI0ZTQ4OCIsImlhdCI6MTc0NjY0NjExMn0.DzwGRGZtMd1MBGKKOPAOiKhJVkBG3jv4Rgd5boWMJWE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:5000/api/tasks/681bb4f7ab8d3bbaa4b4e48c",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks",
+						"681bb4f7ab8d3bbaa4b4e48c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
