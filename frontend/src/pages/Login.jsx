@@ -1,7 +1,10 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
-const API_URL = import.meta.env.VITE_API_URL; 
+import { Link } from "react-router-dom";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,31 +25,61 @@ const Login = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-md mx-auto mt-20 p-4 shadow-md"
-    >
-      <h2 className="text-2xl mb-4">Login</h2>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        className="w-full p-2 mb-4 border"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        className="w-full p-2 mb-4 border"
-        required
-      />
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2">
-        Login
-      </button>
-    </form>
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* Header */}
+      <header className="bg-indigo-600 text-white p-6 shadow-md">
+        <div className="max-w-5xl mx-auto">
+          <h1 className="text-3xl font-bold">Task Management</h1>
+        </div>
+      </header>
+
+      {/* Form */}
+      <main className="flex-1 flex items-center justify-center px-4">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg"
+        >
+          <h2 className="text-2xl font-bold text-center mb-6">Login to your account</h2>
+
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className="w-full p-3 mb-4 border rounded-lg"
+            required
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="w-full p-3 mb-4 border rounded-lg"
+            required
+          />
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg"
+          >
+            Login
+          </button>
+
+          <p className="text-center text-sm mt-4">
+            Don&apos;t have an account?{" "}
+            <Link to="/register" className="text-indigo-600 hover:underline font-medium">
+              Register
+            </Link>
+          </p>
+        </form>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-gray-100 text-center py-4 shadow-inner">
+        <p className="text-sm text-gray-600">
+          © {new Date().getFullYear()} Task Manager by Rajat Valecha
+        </p>
+      </footer>
+    </div>
   );
 };
 
