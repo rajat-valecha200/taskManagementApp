@@ -8,10 +8,12 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios.post(`${API_URL}/api/register`, {
         name,
@@ -21,7 +23,8 @@ const Register = () => {
       navigate("/");
     } catch (err) {
       console.error("Error occurred:", err);
-      alert("Registration failed");
+      alert(err.response?.data?.message || "Registration failed");
+      setLoading(false);
     }
   };
 
@@ -68,9 +71,14 @@ const Register = () => {
           />
           <button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg"
+            disabled={loading}
+            className={`w-full font-semibold py-2 rounded-lg text-white ${
+              loading
+                ? "bg-green-400 cursor-not-allowed"
+                : "bg-green-600 hover:bg-green-700"
+            }`}
           >
-            Register
+            {loading ? "Please wait..." : "Register"}
           </button>
 
           <p className="text-center text-sm mt-4">
