@@ -8,10 +8,12 @@ const API_URL = import.meta.env.VITE_API_URL;
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/api/login`, {
         email,
@@ -20,7 +22,8 @@ const Login = () => {
       login(res.data.token, res.data.username);
     } catch (err) {
       console.error("Error occurred:", err);
-      alert("Login failed");
+      alert(err.response?.data?.message || "Login failed");
+      setLoading(false);
     }
   };
 
@@ -39,7 +42,9 @@ const Login = () => {
           onSubmit={handleSubmit}
           className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg"
         >
-          <h2 className="text-2xl font-bold text-center mb-6">Login to your account</h2>
+          <h2 className="text-2xl font-bold text-center mb-6">
+            Login to your account
+          </h2>
 
           <input
             type="email"
@@ -59,14 +64,22 @@ const Login = () => {
           />
           <button
             type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg"
+            disabled={loading}
+            className={`w-full font-semibold py-2 rounded-lg text-white ${
+              loading
+                ? "bg-indigo-400 cursor-not-allowed"
+                : "bg-indigo-600 hover:bg-indigo-700"
+            }`}
           >
-            Login
+            {loading ? "Please wait..." : "Login"}
           </button>
 
           <p className="text-center text-sm mt-4">
             Don&apos;t have an account?{" "}
-            <Link to="/register" className="text-indigo-600 hover:underline font-medium">
+            <Link
+              to="/register"
+              className="text-indigo-600 hover:underline font-medium"
+            >
               Register
             </Link>
           </p>
